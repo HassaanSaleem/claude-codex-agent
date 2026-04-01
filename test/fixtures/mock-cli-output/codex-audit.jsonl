@@ -1,0 +1,6 @@
+{"type":"message","content":"Auditing uncommitted changes against plan..."}
+{"type":"message","content":"Checking for spec drift... None found."}
+{"type":"message","content":"Checking for risky code patterns... None found."}
+{"type":"message","content":"Checking test coverage... Adequate."}
+{"type":"message","content":"PASS: All changes align with the plan."}
+{"type":"done"}

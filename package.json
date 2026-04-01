@@ -1,0 +1,182 @@
+{
+  "name": "claudecodex",
+  "displayName": "ClaudeCodex",
+  "description": "Dual-vendor coding agent pipeline: Claude Code plans/implements, Codex verifies/audits",
+  "version": "0.1.0",
+  "publisher": "HassaanSaleem",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HassaanSaleem/claude-codex-agent.git"
+  },
+  "engines": {
+    "vscode": "^1.105.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:claudeCodex.startPipeline",
+    "onCommand:claudeCodex.viewHistory",
+    "onView:claudeCodex.chatView"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "claudeCodex.startPipeline",
+        "title": "ClaudeCodex: Start Pipeline"
+      },
+      {
+        "command": "claudeCodex.cancelPipeline",
+        "title": "ClaudeCodex: Cancel Pipeline"
+      },
+      {
+        "command": "claudeCodex.viewHistory",
+        "title": "ClaudeCodex: View Run History"
+      },
+      {
+        "command": "claudeCodex.viewRun",
+        "title": "ClaudeCodex: View Run Details"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "claudecodex",
+          "title": "ClaudeCodex",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "claudecodex": [
+        {
+          "type": "webview",
+          "id": "claudeCodex.chatView",
+          "name": "Chat"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "ClaudeCodex",
+      "properties": {
+        "claudeCodex.claudeCliPath": {
+          "type": "string",
+          "default": "claude",
+          "description": "Path to Claude Code CLI executable"
+        },
+        "claudeCodex.codexCliPath": {
+          "type": "string",
+          "default": "codex",
+          "description": "Path to Codex CLI executable"
+        },
+        "claudeCodex.claudeModel": {
+          "type": "string",
+          "default": "",
+          "description": "Optional model override for Claude Code CLI (e.g., 'sonnet', 'opus')"
+        },
+        "claudeCodex.codexModel": {
+          "type": "string",
+          "default": "",
+          "description": "Optional model override for Codex CLI (e.g., 'o3', 'gpt-4o')"
+        },
+        "claudeCodex.maxIterations": {
+          "type": "number",
+          "default": 3,
+          "description": "Fix-loop budget (max iterations before halting)"
+        },
+        "claudeCodex.patchBudget": {
+          "type": "number",
+          "default": 500,
+          "description": "Max total lines changed before requiring confirmation"
+        },
+        "claudeCodex.testCommand": {
+          "type": "string",
+          "default": "",
+          "description": "Command to run tests (empty = skip)"
+        },
+        "claudeCodex.lintCommand": {
+          "type": "string",
+          "default": "",
+          "description": "Command to run linter (empty = skip)"
+        },
+        "claudeCodex.typecheckCommand": {
+          "type": "string",
+          "default": "",
+          "description": "Command to run type checker (empty = skip)"
+        },
+        "claudeCodex.maxPlanRevisions": {
+          "type": "number",
+          "default": 2,
+          "description": "Max auto-revisions of plan from Codex feedback before human approval"
+        },
+        "claudeCodex.securityScanCommand": {
+          "type": "string",
+          "default": "",
+          "description": "Optional security scan command (empty = disabled)"
+        },
+        "claudeCodex.cliTimeout": {
+          "type": "number",
+          "default": 3600,
+          "description": "Per-CLI invocation timeout in seconds"
+        },
+        "claudeCodex.gateTimeout": {
+          "type": "number",
+          "default": 300,
+          "description": "Per-gate command timeout in seconds"
+        },
+        "claudeCodex.runDirectory": {
+          "type": "string",
+          "default": "specs",
+          "description": "Artifacts directory relative to workspace"
+        },
+        "claudeCodex.pipelineTimeout": {
+          "type": "number",
+          "default": 3600,
+          "description": "Overall pipeline timeout in seconds (default: 60 minutes)"
+        },
+        "claudeCodex.runRetentionLimit": {
+          "type": "number",
+          "default": 20,
+          "description": "Max run artifact directories to retain (oldest auto-deleted)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "check-types": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest",
+    "test:integration": "vscode-test",
+    "package": "npm run compile && vsce package --no-dependencies",
+    "pretest": "npm run compile"
+  },
+  "dependencies": {
+    "@shikijs/core": "^3.2.0",
+    "@shikijs/engine-javascript": "^3.2.0",
+    "@shikijs/langs": "^3.2.0",
+    "@shikijs/themes": "^3.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "react-markdown": "^10.1.0",
+    "remark-breaks": "^4.0.0",
+    "remark-gfm": "^4.0.1",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "@types/vscode": "^1.105.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.0",
+    "@vscode/vsce": "^3.0.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}

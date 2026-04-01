@@ -1,0 +1,168 @@
+/* VS Code Theme CSS – maps VS Code CSS variables to component styles */
+
+:root {
+  --font-family: var(--vscode-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+  --font-size: var(--vscode-font-size, 13px);
+  --foreground: var(--vscode-foreground, #cccccc);
+  --background: var(--vscode-editor-background, #1e1e1e);
+  --input-bg: var(--vscode-input-background, #3c3c3c);
+  --input-fg: var(--vscode-input-foreground, #cccccc);
+  --input-border: var(--vscode-input-border, #3c3c3c);
+  --button-bg: var(--vscode-button-background, #0e639c);
+  --button-fg: var(--vscode-button-foreground, #ffffff);
+  --button-hover-bg: var(--vscode-button-hoverBackground, #1177bb);
+  --button-secondary-bg: var(--vscode-button-secondaryBackground, #3a3d41);
+  --button-secondary-fg: var(--vscode-button-secondaryForeground, #ffffff);
+  --badge-bg: var(--vscode-badge-background, #4d4d4d);
+  --badge-fg: var(--vscode-badge-foreground, #ffffff);
+  --error-fg: var(--vscode-errorForeground, #f48771);
+  --success-fg: var(--vscode-testing-iconPassed, #73c991);
+  --warning-fg: var(--vscode-editorWarning-foreground, #cca700);
+  --border: var(--vscode-panel-border, #2b2b2b);
+  --panel-bg: var(--vscode-panel-background, #1e1e1e);
+  --scrollbar: var(--vscode-scrollbarSlider-background, rgba(121, 121, 121, 0.4));
+
+  /* Typography scale */
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-base: var(--vscode-font-size, 13px);
+  --text-lg: 16px;
+  --text-xl: 20px;
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  /* Code block tokens */
+  --code-bg: var(--vscode-textCodeBlock-background, rgba(30, 30, 30, 0.5));
+  --code-border: var(--vscode-widget-border, var(--border));
+  --code-toolbar-bg: var(--vscode-editorWidget-background, #252526);
+  --code-font: var(--vscode-editor-font-family, 'Cascadia Code', 'Fira Code', monospace);
+  --code-font-size: var(--vscode-editor-font-size, 12px);
+
+  /* Shiki CSS variable theme mappings */
+  --shiki-foreground: var(--vscode-editor-foreground, #d4d4d4);
+  --shiki-background: var(--code-bg);
+  --shiki-token-constant: var(--vscode-symbolIcon-constantForeground, #4fc1ff);
+  --shiki-token-string: var(--vscode-debugTokenExpression-string, #ce9178);
+  --shiki-token-comment: var(--vscode-editorLineNumber-foreground, #6a9955);
+  --shiki-token-keyword: var(--vscode-symbolIcon-keywordForeground, #569cd6);
+  --shiki-token-function: var(--vscode-symbolIcon-functionForeground, #dcdcaa);
+  --shiki-token-punctuation: var(--vscode-editorBracketMatch-border, #d4d4d4);
+  --shiki-token-link: var(--vscode-textLink-foreground, #3794ff);
+
+  /* Chat mode tokens (005-chat-modes) */
+  --mode-edit-bg: var(--vscode-editorWarning-foreground, #cca700);
+  --mode-edit-fg: var(--vscode-editor-background, #1e1e1e);
+  --mode-plan-bg: var(--vscode-editorInfo-foreground, #3794ff);
+  --mode-plan-fg: var(--vscode-editor-background, #1e1e1e);
+  --mode-badge-edit-bg: rgba(204, 167, 0, 0.15);
+  --mode-badge-edit-fg: var(--vscode-editorWarning-foreground, #cca700);
+  --mode-badge-plan-bg: rgba(55, 148, 255, 0.15);
+  --mode-badge-plan-fg: var(--vscode-editorInfo-foreground, #3794ff);
+
+  /* Interactive tokens */
+  --hover-bg: var(--vscode-list-hoverBackground, rgba(255, 255, 255, 0.04));
+  --focus-ring: var(--vscode-focusBorder, #007fd4);
+  --tooltip-bg: var(--vscode-editorHoverWidget-background, #252526);
+  --tooltip-fg: var(--vscode-editorHoverWidget-foreground, #cccccc);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--foreground);
+  background: var(--background);
+  line-height: 1.4;
+  padding: 0;
+}
+
+button {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  cursor: pointer;
+  border: none;
+  border-radius: 2px;
+  padding: 6px 14px;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button.primary {
+  background: var(--button-bg);
+  color: var(--button-fg);
+}
+
+button.primary:hover:not(:disabled) {
+  background: var(--button-hover-bg);
+}
+
+button.secondary {
+  background: var(--button-secondary-bg);
+  color: var(--button-secondary-fg);
+}
+
+textarea, input {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  background: var(--input-bg);
+  color: var(--input-fg);
+  border: 1px solid var(--input-border);
+  border-radius: 2px;
+  padding: 6px 8px;
+  width: 100%;
+  resize: vertical;
+}
+
+textarea:focus, input:focus {
+  outline: 1px solid var(--button-bg);
+  border-color: var(--button-bg);
+}
+
+pre, code {
+  font-family: var(--vscode-editor-font-family, 'Cascadia Code', 'Fira Code', monospace);
+  font-size: var(--vscode-editor-font-size, 12px);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar);
+  border-radius: 5px;
+}
+
+/* Code block toolbar hover */
+.code-block-container:hover .code-block-toolbar {
+  opacity: 1 !important;
+}
+
+/* Message actions hover */
+.message-hover-container:hover .message-actions-toolbar {
+  opacity: 1 !important;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0; }
+}
+
+@keyframes typingPulse {
+  0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
+  40% { opacity: 1; transform: scale(1); }
+}

@@ -1,0 +1,2 @@
+{"type":"assistant","content":[{"type":"text","text":"## Implementation Plan\n\n### Files to Create\n- `src/health.py` — Health check endpoint\n\n### Files to Modify\n- `src/app.py` — Register health route\n\n### Test Requirements\n- `tests/test_health.py` — Verify GET /health returns 200\n\n### Steps\n1. Create health check handler\n2. Register route in app\n3. Add integration test"}]}
+{"type":"result","text":"Plan generated successfully."}
